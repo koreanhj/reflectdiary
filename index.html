@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>찐쌤의 재미있는 국어 수업일지</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <p class="badge">중학교 1학년 국어 수업일지</p>
+    <h1>찐쌤의 재미있는 국어 수업과 나의 다짐</h1>
+    <p>한 달 동안 배운 국어 수업을 되돌아보고 나의 성장을 기록해봅시다 ✨</p>
+  </header>
+
+  <main>
+    <section class="tab-box">
+      <button class="tab active" onclick="showPage('student')">✏️ 학생용 일지 작성</button>
+      <button class="tab" onclick="showPage('teacher')">👩‍🏫 교사용 대시보드</button>
+    </section>
+
+    <section id="student" class="page active">
+      <form id="diaryForm">
+        <div class="card">
+          <span>CARD 01</span>
+          <h2>반가워요! 누구인가요?</h2>
+          <label>학급</label>
+          <select id="classNum" required>
+            <option value="">반 선택</option>
+            <option>1반</option>
+            <option>2반</option>
+            <option>3반</option>
+          </select>
+
+          <label>학번 5자리</label>
+          <input type="text" id="studentNum" maxlength="5" required />
+
+          <label>이름</label>
+          <input type="text" id="studentName" required />
+        </div>
+
+        <div class="card">
+          <span>CARD 02</span>
+          <h2>이번 달에 배운 국어 단원은 무엇인가요?</h2>
+          <select id="unit" required>
+            <option value="">단원을 선택해주세요</option>
+            <option>1. 비유와 상징</option>
+            <option>2. 읽고 대화하고</option>
+            <option>3. 능동적으로 읽기</option>
+            <option>4. 성장의 시간</option>
+            <option>5. 언어의 세계</option>
+            <option>6. 매체와 표현</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <span>CARD 03</span>
+          <h2>수업을 돌아보며</h2>
+          <label>가장 인상 깊었던 내용과 그 이유는 무엇인가요?</label>
+          <textarea id="impressive" required></textarea>
+
+          <label>배우면서 가장 어려웠거나 이해하기 힘들었던 점은 무엇인가요?</label>
+          <textarea id="difficult" required></textarea>
+        </div>
+
+        <div class="card">
+          <span>CARD 04</span>
+          <h2>나의 성장과 칭찬</h2>
+          <label>수업을 통해 새롭게 알게 되었거나 깨달은 점은 무엇인가요?</label>
+          <textarea id="learned" required></textarea>
+
+          <label>이번 달 국어 수업 시간 중 자신이 가장 잘했다고 생각하는 점은 무엇인가요?</label>
+          <textarea id="good" required></textarea>
+        </div>
+
+        <div class="card">
+          <span>CARD 05</span>
+          <h2>앞으로의 멋진 다짐</h2>
+          <label>다음 달 국어 수업을 향한 나의 다짐을 한 문장으로 적어주세요!</label>
+          <textarea id="promise" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">찐쌤께 일지 제출하기</button>
+      </form>
+    </section>
+
+    <section id="teacher" class="page">
+      <div class="card">
+        <h2>👩‍🏫 학급별 제출 현황 관리</h2>
+        <select id="teacherClass" onchange="renderDashboard()">
+          <option>1반</option>
+          <option>2반</option>
+          <option>3반</option>
+        </select>
+
+        <div class="status">
+          <div>
+            <h3>제출 완료</h3>
+            <p id="submittedCount">0명</p>
+          </div>
+          <div>
+            <h3>미제출</h3>
+            <p id="notSubmittedCount">0명</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>학생 일지 모아보기</h2>
+        <button onclick="downloadCSV()" class="small-btn">이 학급 데이터 CSV 다운로드</button>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>학번</th>
+                <th>이름</th>
+                <th>단원</th>
+                <th>인상 깊은 내용</th>
+                <th>어려웠던 점</th>
+                <th>깨달은 점</th>
+                <th>잘한 점</th>
+                <th>나의 다짐</th>
+                <th>제출시간</th>
+              </tr>
+            </thead>
+            <tbody id="diaryTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <button onclick="resetData()" class="reset-btn">⚠️ 전체 데이터 초기화하기</button>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 찐쌤의 국어 교실. 학생들의 성장을 응원합니다.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
